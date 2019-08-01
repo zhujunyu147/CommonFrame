@@ -17,7 +17,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 public class ApiRetrofit {
-    public final String BASE_SERVER_URL = "http://47.96.30.3/";
+    public final String BASE_SERVER_URL = "https://iaq.honcloud.honeywell.com.cn/v2/00100002/";
     private static ApiRetrofit apiRetrofit;
     private ApiServer apiServer;
     private Retrofit retrofit;
