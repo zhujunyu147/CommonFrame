@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="sliding_menu_left_icon">
+        <item>@mipmap/ic_add</item>
+        <item>@mipmap/ic_costumer_service</item>
+        <item>@mipmap/ic_user_manual</item>
+        <item>@mipmap/ic_about</item>
+        <item>@mipmap/faq</item>
+        <item>@mipmap/menu_logout</item>
+    </array>
+
+
+    <string-array name="sliding_menu_left_title">
+        <item>@string/add_iaq</item>
+        <item>@string/online_consult</item>
+        <item>@string/user_manual</item>
+        <item>@string/about</item>
+        <item>@string/faq</item>
+        <item>@string/logout</item>
+    </string-array>
+
+</resources>
