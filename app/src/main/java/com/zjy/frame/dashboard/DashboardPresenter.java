@@ -83,6 +83,7 @@ public class DashboardPresenter extends BasePresenter<DashboardView> {
         params.put(Constants.REQUEST_TYPE, Constants.TYPE_ALARM);
         params.put(Constants.KEY_DEVICE_ID, iaqDevice.getDeviceId());
 
+
         JSONObject bodyAsJson = new JSONObject(params);
         String JsonStr = bodyAsJson.toString();
         RequestBody body = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), JsonStr);
