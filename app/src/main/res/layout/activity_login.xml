@@ -5,52 +5,122 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
+    <include
+        android:id="@+id/header"
+        layout="@layout/layout_header" />
+
+
     <LinearLayout
-        android:id="@+id/email_login_form"
+        android:id="@+id/ll_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_marginStart="@dimen/margin_start_end"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="@dimen/margin_start_end"
         android:orientation="vertical">
 
-
-        <AutoCompleteTextView
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/prompt_email"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:singleLine="true" />
-
+        <TextView
+            style="@style/title_text_style"
+            android:text="@string/region" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/et_select_country"
+            style="@style/edit_text_style"
+            android:focusableInTouchMode="false"
+            android:hint="@string/country_select" />
+
+        <Spinner
+            android:id="@+id/sp_country"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/prompt_password"
-            android:imeActionId="6"
-            android:imeActionLabel="@string/action_sign_in_short"
-            android:imeOptions="actionUnspecified"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:singleLine="true" />
-
+            android:layout_marginTop="5dp"
+            android:background="@drawable/edittext_frame"
+            android:spinnerMode="dropdown"
+            android:visibility="gone"></Spinner>
+        <!--android:spinnerMode="dropdown"-->
+        <!--android:background="@drawable/edittext_frame"-->
+        <TextView
+            style="@style/title_text_style"
+            android:text="@string/phone" />
 
         <EditText
-            android:id="@+id/et_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="请输入关键字"
-            android:textSize="14sp" />
+            android:id="@+id/phone_number"
+            style="@style/edit_text_style"
+            android:imeOptions="actionNext"
+            android:inputType="number" />
 
-        <Button
-            android:id="@+id/email_sign_in_button"
-            style="?android:textAppearanceSmall"
+        <TextView
+            style="@style/title_text_style"
+            android:text="@string/password" />
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/action_sign_in"
-            android:textStyle="bold" />
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_frame"
+            android:paddingRight="10dp">
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:maxLength="20"
+                android:padding="10dp"
+                android:textColorHint="@color/text_color_hint" />
+
+            <CheckBox
+                android:id="@+id/ch_wifi_pwd"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/checkbox_style"
+                android:button="@null"
+                android:checked="false" />
+
+        </RelativeLayout>
+
 
     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/forget_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_group"
+        android:layout_marginLeft="@dimen/margin_start_end"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="@dimen/margin_start_end"
+        android:layout_marginTop="15dp"
+        android:text="@string/forgot_password"
+        android:textColor="#3F8DC4"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_start_end"
+        android:layout_below="@+id/ll_group"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="@dimen/margin_start_end"
+        android:text="@string/create_user"
+        android:textColor="#3F8DC4"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/bottom_button_style"
+        android:enabled="true"
+        android:text="@string/login" />
+
+
 </LinearLayout>

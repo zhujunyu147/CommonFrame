@@ -3,4 +3,24 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="header_background">#FFFFFF</color>
+    <color name="header_divider_color">#CFCFCF</color>
+    <color name="body_text_blue">#00BFFF</color>
+    <color name="btn_background_disable">#CACACA</color>
+    <color name="btn_background_blue_pressed">#1770D7</color>
+    <color name="btn_background_blue">#1770D7</color>
+    <color name="white">#ffffffff</color>
+    <color name="edit_title_text_color">#9C9C9C</color>
+    <color name="edittext_bg_color">#CCCCCC</color>
+    <color name="text_color_hint">#C8C8C8</color>
+
+    <color name="half_opacity_white">#A0ffffff</color>
+    <color name="black">#000000</color>
+    <color name="text_color1">#707070</color>
+    <color name="title_grey">#F7F7F7</color>
+    <color name="gray_line">#999999</color>
+    <color name="chart_green_color">#98c260</color>
+    <color name="chart_orange_color">#C69A1F</color>
+    <color name="chart_deep_red_color">#BD571A</color>
 </resources>

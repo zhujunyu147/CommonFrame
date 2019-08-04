@@ -14,6 +14,7 @@ import retrofit2.Retrofit;
 
 public class BaseConverterFactory extends Converter.Factory {
 
+    //工厂方法，用于创建实例
     public static BaseConverterFactory create() {
         return create(new Gson());
     }
@@ -31,15 +32,13 @@ public class BaseConverterFactory extends Converter.Factory {
     }
 
     @Override
-    public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations,
-                                                            Retrofit retrofit) {
+    public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations,Retrofit retrofit) {
         TypeAdapter<?> adapter = gson.getAdapter(TypeToken.get(type));
         return new BaseResponseBodyConverter<>(gson, adapter);
     }
 
     @Override
-    public Converter<?, RequestBody> requestBodyConverter(Type type,
-                                                          Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
+    public Converter<?, RequestBody> requestBodyConverter(Type type,Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
         TypeAdapter<?> adapter = gson.getAdapter(TypeToken.get(type));
         return new BaseRequestBodyConverter<>(gson, adapter);
     }

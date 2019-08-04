@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
+import com.zjy.frame.utils.Constants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,20 +29,18 @@ public class BaseResponseBodyConverter<T> implements Converter<ResponseBody, T> 
         String jsonString = value.string();
         try {
             JSONObject object = new JSONObject(jsonString);
-            int status = object.getInt("status");
-            if (status != 1) {
-                String msg = object.getString("msg");
-                if (TextUtils.isEmpty(msg)) {
-                    msg = object.getString("error");
-                }
-                //异常处理
-                throw new BaseException(msg, status);
+            if (object.has(Constants.RESPONSE_KEY_PHONEID)) {
+                //登录成功结果
+                return adapter.fromJson(jsonString);
+            } else {
+
+                return adapter.fromJson(jsonString);
             }
-            return adapter.fromJson(object.getString("data"));
+
 
         } catch (JSONException e) {
             e.printStackTrace();
-            //数据解析异常
+//            //数据解析异常
             throw new BaseException(BaseException.PARSE_ERROR_MSG, BaseException.PARSE_ERROR);
         } finally {
             value.close();

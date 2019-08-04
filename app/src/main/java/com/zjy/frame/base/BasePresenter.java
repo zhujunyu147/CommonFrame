@@ -6,6 +6,7 @@ import com.zjy.frame.api.ApiServer;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class BasePresenter<V extends BaseView> {
@@ -24,12 +25,12 @@ public class BasePresenter<V extends BaseView> {
         if (compositeDisposable == null) {
             compositeDisposable = new CompositeDisposable();
         }
-        compositeDisposable.add(observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(observer));
+        observable = observable.subscribeOn(Schedulers.io());
+        observable = observable.observeOn(AndroidSchedulers.mainThread());
+        Disposable disposable = observable.subscribeWith(observer);
+
+        compositeDisposable.add(disposable);
     }
-
-
 
 
 }

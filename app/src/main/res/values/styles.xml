@@ -8,4 +8,116 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="divider_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/header_divider_height</item>
+        <item name="android:background">@color/header_divider_color</item>
+    </style>
+
+    <style name="IAQBaseTheme" parent="AppTheme">
+        <item name="android:windowAnimationStyle">@style/ActivityAnimation</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:splitMotionEvents">false</item>
+    </style>
+
+
+    <style name="ActivityAnimation">
+        <item name="android:activityOpenEnterAnimation">@anim/push_left_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/push_left_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/push_right_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/push_right_out</item>
+        <item name="android:taskOpenEnterAnimation">@null</item>
+        <item name="android:taskOpenExitAnimation">@null</item>
+        <item name="android:taskCloseEnterAnimation">@null</item>
+        <item name="android:taskCloseExitAnimation">@null</item>
+        <item name="android:taskToFrontEnterAnimation">@null</item>
+        <item name="android:taskToFrontExitAnimation">@null</item>
+        <item name="android:taskToBackEnterAnimation">@null</item>
+        <item name="android:taskToBackExitAnimation">@null</item>
+    </style>
+
+
+    <style name="ActivityOtherAnimation">
+        <item name="android:activityOpenEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/push_bottom_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/push_top_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/push_top_out</item>
+
+        <item name="android:taskOpenEnterAnimation">@null</item>
+        <item name="android:taskOpenExitAnimation">@null</item>
+        <item name="android:taskCloseEnterAnimation">@null</item>
+        <item name="android:taskCloseExitAnimation">@null</item>
+        <item name="android:taskToFrontEnterAnimation">@null</item>
+        <item name="android:taskToFrontExitAnimation">@null</item>
+        <item name="android:taskToBackEnterAnimation">@null</item>
+        <item name="android:taskToBackExitAnimation">@null</item>
+    </style>
+
+    <style name="title_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/edit_title_text_color</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:typeface">normal</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
+
+    <style name="edit_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/list_item_text_color</item>
+        <item name="android:textSize">@dimen/list_item_text_size</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/edittext_frame</item>
+        <item name="android:typeface">normal</item>
+        <item name="android:textColorHint">@color/text_color_hint</item>
+        <item name="android:maxLength">30</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+
+    <style name="bottom_button_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_marginBottom">@dimen/margin_bottom</item>
+        <item name="android:layout_marginLeft">@dimen/margin_start_end</item>
+        <item name="android:layout_marginRight">@dimen/margin_start_end</item>
+        <item name="android:layout_marginTop">25dp</item>
+        <item name="android:background">@drawable/btn_bg</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="list_item_text_style">
+        <item name="android:textColor">@color/list_item_text_color</item>
+        <item name="android:textSize">@dimen/list_item_text_size</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:text">@string/app_name</item>
+        <item name="android:typeface">normal</item>
+        <!--<item name="android:textStyle">italic</item>-->
+    </style>
+
+    <style name="loadingDialogStyle" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 对话框是否有遮盖 -->
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+
 </resources>

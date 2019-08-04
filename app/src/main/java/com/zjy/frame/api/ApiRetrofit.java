@@ -2,17 +2,27 @@ package com.zjy.frame.api;
 
 import android.util.Log;
 
+import com.zjy.frame.app.IAQApplication;
 import com.zjy.frame.base.BaseConverterFactory;
+import com.zjy.frame.utils.Constants;
+import com.zjy.frame.utils.PreferenceUtil;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
@@ -27,7 +37,7 @@ public class ApiRetrofit {
     public static ApiRetrofit getInstance() {
         if (apiRetrofit == null) {
             synchronized (Object.class) {
-                if(apiRetrofit == null){
+                if (apiRetrofit == null) {
                     apiRetrofit = new ApiRetrofit();
                 }
             }
@@ -41,9 +51,11 @@ public class ApiRetrofit {
 
 
     public ApiRetrofit() {
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);//Level中还有其他等级
         client = new OkHttpClient.Builder()
-                //添加log拦截器
-                .addInterceptor(interceptor)
+//                .addInterceptor(interceptor)
+                .addInterceptor(logging)
+                .cookieJar(cookieJar)
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .build();
@@ -59,8 +71,31 @@ public class ApiRetrofit {
         apiServer = retrofit.create(ApiServer.class);
     }
 
+    private final HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
+    private CookieJar cookieJar = new CookieJar() {
+        @Override
+        public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+            cookieStore.put(url.host(), cookies);
+        }
+
+        @Override
+        public List<Cookie> loadForRequest(HttpUrl url) {
+            List<Cookie> cookies = cookieStore.get(url.host());
+            return cookies != null ? cookies : new ArrayList<Cookie>();
+        }
+    };
+
+
+    HttpLoggingInterceptor logging = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+        @Override
+        public void log(String message) {
+            Log.e(TAG, message);
+        }
+    });
+
+
     /**
-     * 请求访问quest
+     * 请求访问request
      * response拦截器
      */
     private Interceptor interceptor = new Interceptor() {
@@ -71,10 +106,13 @@ public class ApiRetrofit {
             Response response = chain.proceed(chain.request());
             long endTime = System.currentTimeMillis();
             long duration = endTime - startTime;
+            String cookie = response.header("Set-Cookie");
+
             MediaType mediaType = response.body().contentType();
             String content = response.body().string();
             Log.e(TAG, "----------Request Start----------------");
-            Log.e(TAG, "| " + request.toString() + request.headers().toString());
+            Log.e(TAG, "| Request: " + request.toString() + request.headers().toString());
+            Log.e(TAG, "| Response:" + cookie);
             Log.e(TAG, "| Response:" + content);
             Log.e(TAG, "----------Request End:" + duration + "毫秒----------");
             return response.newBuilder()
@@ -82,7 +120,6 @@ public class ApiRetrofit {
                     .build();
         }
     };
-
 
 
 }

@@ -1,6 +1,10 @@
 package com.zjy.frame.base;
 
+import android.content.Context;
+
 public interface BaseView {
+
+    Context getContext();
     /**
      * 显示dialog
      */
