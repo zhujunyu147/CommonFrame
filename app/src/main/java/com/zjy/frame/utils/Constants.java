@@ -49,4 +49,12 @@ public class Constants {
     public static final String TEMPERATURE_UNIT_F = "2";
 
 
+    public static final String KEY_PM25_RED = "pm25Red";
+    public static final String KEY_PM25_YELLOW = "pm25Yellow";
+    public static final String KEY_TVOC_RED = "tvoc";
+    public static final String KEY_HCHO_RED = "hcho";
+    public static final String KEY_CO2_RED = "co2";
+    public static final String KEY_IQ_RED = "iqRed";
+
+
 }

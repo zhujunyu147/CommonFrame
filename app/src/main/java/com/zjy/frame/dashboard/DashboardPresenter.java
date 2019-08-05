@@ -11,8 +11,8 @@ import com.zjy.frame.device.IAQSimpleFactory;
 import com.zjy.frame.utils.CommonUtils;
 import com.zjy.frame.utils.Constants;
 import com.zjy.frame.utils.DiagnoseUtils;
-import com.zjy.frame.utils.PreferenceUtil;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -83,7 +83,6 @@ public class DashboardPresenter extends BasePresenter<DashboardView> {
         params.put(Constants.REQUEST_TYPE, Constants.TYPE_ALARM);
         params.put(Constants.KEY_DEVICE_ID, iaqDevice.getDeviceId());
 
-
         JSONObject bodyAsJson = new JSONObject(params);
         String JsonStr = bodyAsJson.toString();
         RequestBody body = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), JsonStr);
@@ -92,15 +91,27 @@ public class DashboardPresenter extends BasePresenter<DashboardView> {
             public void onSuccess(AlarmValueResponse response) {
 
                 String jsonString = response.getData();
-//                JSONObject jb = new JSONObject(jsonString);
-//                String mPm25Red = jb.optString(Constants.KEY_PM25_RED);
-//                String mPm25Yellow = jb.optString(Constants.KEY_PM25_YELLOW);
-//                String mCo2Red = jb.optString(Constants.KEY_CO2_RED);
-//                String mHchoRed = jb.optString(Constants.KEY_HCHO_RED);
-//                String mTvocRed = jb.optString(Constants.KEY_TVOC_RED);
-//                String mIqRed = jb.optString(Constants.KEY_IQ_RED);
+                JSONObject jb = null;
+                try {
+                    jb = new JSONObject(jsonString);
+                    String mPm25Red = jb.optString(Constants.KEY_PM25_RED);
+                    String mPm25Yellow = jb.optString(Constants.KEY_PM25_YELLOW);
+                    String mCo2Red = jb.optString(Constants.KEY_CO2_RED);
+                    String mHchoRed = jb.optString(Constants.KEY_HCHO_RED);
+                    String mTvocRed = jb.optString(Constants.KEY_TVOC_RED);
+                    String mIqRed = jb.optString(Constants.KEY_IQ_RED);
 
-                getEveryDeviceLocation(iaqDevice);
+                    iaqDevice.setmPm25Red(mPm25Red);
+                    iaqDevice.setmPm25Yellow(mPm25Yellow);
+                    iaqDevice.setmTvocRed(mTvocRed);
+                    iaqDevice.setmHchoRed(mHchoRed);
+                    iaqDevice.setmCo2Red(mCo2Red);
+                    iaqDevice.setmIqRed(mIqRed);
+                    getEveryDeviceLocation(iaqDevice);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
@@ -122,9 +133,7 @@ public class DashboardPresenter extends BasePresenter<DashboardView> {
         addDisposable(apiServer.GetLocation(body), new BaseObserver<GetLocationResponse>(baseView) {
             @Override
             public void onSuccess(GetLocationResponse response) {
-
-
-
+                iaqDevice.setCity(response.getName());
                 changeCount();
             }
 
@@ -174,7 +183,7 @@ public class DashboardPresenter extends BasePresenter<DashboardView> {
             setChildItemData(i, mDeviceInfoList.get(i).getHome(), mDeviceInfoList.get(i).getLoacation());
         }
 
-        baseView.setDataComplete(mDeviceInfoList,childMap);
+        baseView.setDataComplete(mDeviceInfoList, childMap);
 
     }
 
@@ -281,7 +290,7 @@ public class DashboardPresenter extends BasePresenter<DashboardView> {
             childItem.setDeviceId(iaqDevice.getDeviceId());
             childItems.add(childItem);
         }
-        childMap.put(index,childItems);
+        childMap.put(index, childItems);
 
     }
 
