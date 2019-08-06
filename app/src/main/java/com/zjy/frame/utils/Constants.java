@@ -2,8 +2,10 @@ package com.zjy.frame.utils;
 
 public class Constants {
 
-    public static String REQUEST_TYPE = "type";
 
+    public static final String INTENT_DEVICE_ID = "INTENT_DEVICE_ID";
+
+    public static String REQUEST_TYPE = "type";
     public static final String REQUEST_TYPE_LOGIN = "LoginUser";
     public static final String TYPE_LANGUAGE = "IAQLanguage";
     public static final String TYPE_ALARM = "IAQAlertValue";
