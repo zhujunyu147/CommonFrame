@@ -29,6 +29,7 @@
     <string name="iaq_disconnect">Device disconnect</string>
     <string name="getting_data">Getting data</string>
     <string name="get_data_fail">Failed to get data</string>
+
     <string name="status_good">GREAT</string>
     <string name="status_ok">GOOD</string>
     <string name="status_not_good">NOT GOOD</string>

@@ -60,6 +60,7 @@ public class DashboardActivity extends BaseActivity<DashboardPresenter> implemen
         mDeviceInfoList = new ArrayList<>();
         childMap = new HashMap<>();
         mAdapter = new DashboardAdapter(getApplicationContext(), mDeviceInfoList, childMap);
+        expandableListView.setGroupIndicator(null);
         expandableListView.setAdapter(mAdapter);
         expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override

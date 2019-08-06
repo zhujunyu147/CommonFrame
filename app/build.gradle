@@ -37,4 +37,5 @@ dependencies {
     //SlideMenu 动画
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.bravin.btoast:BToast:1.0.3'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 }

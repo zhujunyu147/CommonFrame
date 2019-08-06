@@ -110,6 +110,7 @@ public class DashboardPresenter extends BasePresenter<DashboardView> {
                     getEveryDeviceLocation(iaqDevice);
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    getEveryDeviceLocation(iaqDevice);
                 }
 
             }
