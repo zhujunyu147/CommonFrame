@@ -58,5 +58,9 @@ public class Constants {
     public static final String KEY_CO2_RED = "co2";
     public static final String KEY_IQ_RED = "iqRed";
 
+    //detail
+    public static final String ARG_DEVICE_ID = "deviceId";
+
+
 
 }

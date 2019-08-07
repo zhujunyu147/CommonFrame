@@ -32,7 +32,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".detail.DetailActivity"
+            android:name=".detail.view.DetailActivity"
             android:screenOrientation="portrait" />
 
     </application>

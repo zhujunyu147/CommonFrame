@@ -23,4 +23,5 @@
     <color name="chart_green_color">#98c260</color>
     <color name="chart_orange_color">#C69A1F</color>
     <color name="chart_deep_red_color">#BD571A</color>
+    <color name="transparent">#00000000</color>
 </resources>
