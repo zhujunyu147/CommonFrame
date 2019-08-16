@@ -53,4 +53,12 @@
     <string name="temperature_f_unit">&#176;F</string>
     <string name="percent">&#037;</string>
     <string name="share_image_to">Share it to</string>
+
+    <string name="default_pm">--</string>
+    <string name="pm">PM2.5</string>
+    <string name="iq_unit">%</string>
+    <string name="iq">IQ</string>
+    <string name="know_iaq">Know more about Honeywell air quality monitor?</string>
+    <string name="statistic_day">Daily</string>
+    <string name="statistic_month">Monthly</string>
 </resources>

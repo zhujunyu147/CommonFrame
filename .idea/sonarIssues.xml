@@ -23,6 +23,51 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/activity/AboutActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/activity/AddDeviceActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/activity/AgreementActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/activity/EditHomeActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/activity/HomeActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/activity/IqActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/activity/NameIAQActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/activity/NetworkSetup5Activity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/activity/UserManualGen1Activity.java">
           <value>
             <set />
@@ -38,7 +83,52 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/bean/City.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/charte2r/presenter/ChartPresenter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/charte2r/view/CustomOrdinate.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/charte2r/view/TendChartView.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/charte2r/view/TestActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/fragment/DayDataFragment2.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/fragment/EnvironmentChartFragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/fragment/EnvironmentDetialFragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/fragment/MonthDataFragment2.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/outdoor/OutdoorActivity.java">
           <value>
             <set />
           </value>
@@ -83,6 +173,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/utils/HttpUtils.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/utils/IAQRequestUtils.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/utils/WeatherConstants.java">
           <value>
             <set />
@@ -93,7 +193,47 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/java/com/honeywell/iaq/widget/EnvironmentView.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/res/layout/activity_alarm.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/res/layout/activity_iq.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/res/layout/activity_outdoor.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/res/layout/agreement_layout.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/res/layout/cp_item_search_result_listview.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/res/layout/device_group_item.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/res/layout/fragment_environment_chart.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/res/layout/fragment_environment_detail3.xml">
           <value>
             <set />
           </value>
@@ -103,7 +243,32 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/res/layout/pop_window_info.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/res/layout/user_manual_guide.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/app/src/main/res/values-pt/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/com.honeywell.net/src/main/java/com/honeywell/net/FastTube.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQGithub/com.honeywell.net/src/main/java/com/honeywell/net/core/HoneywellTube.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../IAQandroid/app/build.gradle">
           <value>
             <set />
           </value>
@@ -188,6 +353,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/zjy/frame/dashboard/DashboardAdapter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/zjy/frame/dashboard/DashboardPresenter.java">
           <value>
             <set />
@@ -258,6 +428,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/zjy/frame/permission/IAQPermission.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/zjy/frame/utils/Constants.java">
           <value>
             <set />
@@ -273,6 +448,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/zjy/frame/widget/EnvironmentView.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/zjy/frame/widget/SegmentedGroup.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml">
           <value>
             <set />
@@ -283,12 +468,37 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_history_chart.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_realtime_data.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_header_menu.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/values/colors.xml">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values/styles.xml">
           <value>
             <set />
           </value>

@@ -2,16 +2,23 @@ package com.zjy.frame.detail.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.zjy.frame.R;
 import com.zjy.frame.base.BaseActivity;
 import com.zjy.frame.base.BaseFragment;
 import com.zjy.frame.base.BasePresenter;
 import com.zjy.frame.detail.presenter.DetailPresenter;
+import com.zjy.frame.permission.IAQPermission;
+import com.zjy.frame.permission.Permission;
+import com.zjy.frame.permission.PermissionListener;
 import com.zjy.frame.utils.Constants;
 import com.zjy.frame.widget.CustomViewPager;
 import com.zjy.frame.widget.DirectionalViewPager;
@@ -22,9 +29,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class DetailActivity extends BaseActivity implements ViewPager.OnPageChangeListener, CustomViewPager.MyDirectListener, DetailView {
+public class DetailActivity extends BaseActivity<DetailPresenter> implements ViewPager.OnPageChangeListener, CustomViewPager.MyDirectListener, DetailView, PermissionListener {
 
     public String deviceId;
+    private boolean isStoragePermission = false;
+    private IAQPermission mIaqPermission;
 
     @BindView(R.id.pager)
     public CustomViewPager mCustomViewPager;
@@ -39,7 +48,7 @@ public class DetailActivity extends BaseActivity implements ViewPager.OnPageChan
 
 
     @Override
-    protected BasePresenter createPresenter() {
+    protected DetailPresenter createPresenter() {
         return new DetailPresenter(this);
     }
 
@@ -50,7 +59,7 @@ public class DetailActivity extends BaseActivity implements ViewPager.OnPageChan
 
     @Override
     public Context getContext() {
-        return getContext();
+        return this;
     }
 
 
@@ -64,7 +73,12 @@ public class DetailActivity extends BaseActivity implements ViewPager.OnPageChan
                 finish();
             }
         });
+    }
 
+    @Override
+    protected void initTitle(TextView title) {
+        super.initTitle(title);
+        title.setVisibility(View.GONE);
     }
 
     @Override
@@ -83,6 +97,7 @@ public class DetailActivity extends BaseActivity implements ViewPager.OnPageChan
         mCustomViewPager.setOffscreenPageLimit(2);
         mCustomViewPager.setOnPageChangeListener(this);
         mCustomViewPager.setMyDirectListener(this);
+        mIaqPermission = new IAQPermission(this);
 
     }
 
@@ -97,14 +112,22 @@ public class DetailActivity extends BaseActivity implements ViewPager.OnPageChan
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.iv_share:
-
+                checkPermission();
+                if(!isStoragePermission){
+                    return;
+                }
+                presenter.getCommonShot();
                 break;
             case R.id.iv_info:
 
                 break;
         }
-
     }
+
+    private void checkPermission() {
+        mIaqPermission.checkAndRequestPermission(Permission.PermissionCodes.STORAGE_REQUEST_CODE, this);
+    }
+
 
 
     @Override
@@ -140,5 +163,48 @@ public class DetailActivity extends BaseActivity implements ViewPager.OnPageChan
     @Override
     public void shotFailed() {
 
+    }
+
+    @Override
+    public void onPermissionGranted(int permissionCode) {
+        switch (permissionCode) {
+            case Permission.PermissionCodes.STORAGE_REQUEST_CODE:
+                isStoragePermission = true;
+                break;
+        }
+    }
+
+    @Override
+    public void onPermissionNotGranted(String[] permission, int permissionCode) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            this.requestPermissions(permission, permissionCode);
+        }
+    }
+
+    @Override
+    public void onPermissionDenied(int permissionCode) {
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case IAQPermission.PermissionCodes.STORAGE_REQUEST_CODE:
+
+                if (grantResults.length > 0) {
+                    for (int i = 0; i < grantResults.length; i++) {
+                        if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+                    }
+                    isStoragePermission = true;
+                    presenter.getCommonShot();
+                } else {
+                    isStoragePermission = false;
+                }
+                break;
+
+        }
     }
 }

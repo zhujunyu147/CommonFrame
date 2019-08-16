@@ -1,11 +1,18 @@
 package com.zjy.frame.detail.presenter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
+import android.text.format.Time;
 import android.util.Log;
+import android.view.View;
 import android.widget.ScrollView;
 
 import com.zjy.frame.R;
@@ -30,16 +37,7 @@ public class DetailPresenter extends BasePresenter<DetailView> {
         super(baseView);
     }
 
-    private void getScrollShot(final ScrollView mScrollView) {
-
-
-
-
-
-
-
-
-
+    public void getScrollShot(final ScrollView mScrollView) {
 
         Observable<String> oble = Observable.create(new ObservableOnSubscribe<String>() {
             @Override
@@ -71,34 +69,11 @@ public class DetailPresenter extends BasePresenter<DetailView> {
             }
         });
 
-        Observer<String> oser = new Observer<String>() {
+
+        addDisposable(oble, new BaseObserver<Uri>(baseView) {
             @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(String s) {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
+            public void onSuccess(Uri mUri) {
                 baseView.shotSuccess(mUri);
-            }
-        };
-        oble.subscribe(oser);
-
-
-        addDisposable(oble, new BaseObserver(baseView) {
-            @Override
-            public void onSuccess(Object o) {
-
             }
 
             @Override
@@ -108,16 +83,99 @@ public class DetailPresenter extends BasePresenter<DetailView> {
         });
 
 
-
-
     }
 
 
+    public void getCommonShot() {
 
+        Observable<Uri> oble = Observable.create(new ObservableOnSubscribe<Uri>() {
+            @Override
+            public void subscribe(ObservableEmitter<Uri> emitter) throws Exception {
+                Activity activity = (Activity) baseView.getContext();
+                View decorview = activity.getWindow().getDecorView();
+                decorview.setDrawingCacheEnabled(true);
+                decorview.buildDrawingCache();
+                Bitmap bitmap = Bitmap.createBitmap(decorview.getDrawingCache());
+                Bitmap waterSignBitmap = createBitmap(bitmap, "@ Honeywell空气检测仪App",true);
 
-    private void getCommonShot() {
+                decorview.setDrawingCacheEnabled(false);
+                String SavePath = Environment.getExternalStorageDirectory().getPath() + "/IAQ/ShareImage";
+                File path = new File(SavePath);
+                String filepath = SavePath + "/ScreenShort.png";
+                File file = new File(filepath);
+                if (file.exists()) {
+                    file.delete();
+                }
+                if (!path.exists()) {
+                    path.mkdirs();
+                }
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
+                FileOutputStream fos = new FileOutputStream(file);
+                waterSignBitmap.compress(Bitmap.CompressFormat.PNG, 90, fos);
+                fos.flush();
+                fos.close();
+                MediaScannerConnection.scanFile(baseView.getContext(), new String[]{filepath}, null, null);
+                Uri uri = Uri.fromFile(file);
+
+            }
+        });
+
+        addDisposable(oble, new BaseObserver<Uri>(baseView) {
+            @Override
+            public void onSuccess(Uri mUri) {
+                Log.e("DetailPresenter","onSuccess");
+//                baseView.shotSuccess(mUri);
+            }
+
+            @Override
+            public void onError(String msg) {
+
+            }
+        });
 
     }
+
+    // 给图片添加水印
+    private Bitmap createBitmap(Bitmap src, String string,boolean isWhite) {
+
+        Time t = new Time();
+        t.setToNow();
+        int w = src.getWidth();
+        int h = src.getHeight();
+        String mstrTitle = string;
+        Bitmap bmpTemp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bmpTemp);
+        Paint paint = new Paint();
+        canvas.drawBitmap(src, 0, 0, paint);
+
+        Rect rect = new Rect(0, h - 200, w, h);//画一个矩形
+
+        String familyName = "宋体";
+        Typeface font = Typeface.create(familyName, Typeface.BOLD);
+        if(isWhite){
+            paint.setColor(baseView.getContext().getResources().getColor(R.color.text_color1));
+        }else {
+            paint.setColor(baseView.getContext().getResources().getColor(R.color.text_color1));
+        }
+
+        paint.setTypeface(font);
+        paint.setTextSize(30);
+        paint.setTextAlign(Paint.Align.CENTER);
+
+
+        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
+        float top = fontMetrics.top;//为基线到字体上边框的距离,即上图中的top
+        float bottom = fontMetrics.bottom;//为基线到字体下边框的距离,即上图中的bottom
+        int baseLineY = (int) (rect.centerY() - top / 2 - bottom / 2);//基线中间点的y轴计算公式
+        //文字的位置
+        canvas.drawText(mstrTitle, rect.centerX(), baseLineY, paint);
+        canvas.save(Canvas.ALL_SAVE_FLAG);
+        canvas.restore();
+        return bmpTemp;
+    }
+
 
 
 }

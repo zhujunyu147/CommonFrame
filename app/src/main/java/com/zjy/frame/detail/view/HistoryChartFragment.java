@@ -2,6 +2,7 @@ package com.zjy.frame.detail.view;
 
 import android.os.Bundle;
 
+import com.zjy.frame.R;
 import com.zjy.frame.base.BaseFragment;
 import com.zjy.frame.detail.presenter.HistoryChartPresenter;
 import com.zjy.frame.utils.Constants;
@@ -24,6 +25,6 @@ public class HistoryChartFragment extends BaseFragment<HistoryChartPresenter> {
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.fragment_history_chart;
     }
 }

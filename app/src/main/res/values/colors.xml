@@ -24,4 +24,17 @@
     <color name="chart_orange_color">#C69A1F</color>
     <color name="chart_deep_red_color">#BD571A</color>
     <color name="transparent">#00000000</color>
+    <color name="toolbar_title_text_color1">#808080</color>
+    <color name="toolbar_title_text_color">#606060</color>
+    <color name="dark">#242424</color>
+    <color name="text_73">#737373</color>
+
+    <color name="chart_green_color_transparent">#0098c260</color>
+
+
+    <!-- SegmentedGroup start -->
+    <color name="radio_button_selected_color">#5B5B5B</color>
+    <color name="radio_button_unselected_color">#FFFFFF</color>
+    <!--SegmentedGroup end -->
+
 </resources>

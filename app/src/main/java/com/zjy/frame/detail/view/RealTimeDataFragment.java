@@ -2,6 +2,7 @@ package com.zjy.frame.detail.view;
 
 import android.os.Bundle;
 
+import com.zjy.frame.R;
 import com.zjy.frame.base.BaseFragment;
 import com.zjy.frame.detail.presenter.RealTimeDataPresenter;
 import com.zjy.frame.utils.Constants;
@@ -24,6 +25,6 @@ public class RealTimeDataFragment extends BaseFragment<RealTimeDataPresenter> {
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.fragment_realtime_data;
     }
 }

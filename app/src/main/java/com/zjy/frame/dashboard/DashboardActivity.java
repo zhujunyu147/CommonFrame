@@ -3,6 +3,7 @@ package com.zjy.frame.dashboard;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.bravin.btoast.BToast;
 import com.nineoldandroids.view.ViewHelper;
 import com.zjy.frame.R;
 import com.zjy.frame.base.BaseActivity;
+import com.zjy.frame.detail.view.DetailActivity;
 import com.zjy.frame.device.IAQDevice;
 import com.zjy.frame.device.IAQSimpleFactory;
 import com.zjy.frame.eroll.AddDeviceActivity;
@@ -26,7 +28,9 @@ import java.util.Map;
 
 import butterknife.BindView;
 
-public class DashboardActivity extends BaseActivity<DashboardPresenter> implements DashboardView {
+import static com.zjy.frame.utils.Constants.INTENT_DEVICE_ID;
+
+public class DashboardActivity extends BaseActivity<DashboardPresenter> implements DashboardView, ExpandableListView.OnChildClickListener {
 
     @BindView(R.id.device_list)
     public ExpandableListView expandableListView;
@@ -68,6 +72,7 @@ public class DashboardActivity extends BaseActivity<DashboardPresenter> implemen
                 return true;
             }
         });
+        expandableListView.setOnChildClickListener(this);
     }
 
     @Override
@@ -139,7 +144,8 @@ public class DashboardActivity extends BaseActivity<DashboardPresenter> implemen
         getData();
 
     }
-    private void getData(){
+
+    private void getData() {
         if (!CommonUtils.isNetworkAvailable(getApplicationContext())) {
             dismissLoadingDialog();
             BToast.success(getApplicationContext()).text(getString(R.string.no_network)).show();
@@ -160,14 +166,14 @@ public class DashboardActivity extends BaseActivity<DashboardPresenter> implemen
 
     @Override
     public void getDeviceDataSuccess(ArrayList<IAQDevice> iaqDevices) {
-        Log.e("getDeviceDataSuccess","getDeviceDataSuccess");
+        Log.e("getDeviceDataSuccess", "getDeviceDataSuccess");
         presenter.setData(iaqDevices);
 
     }
 
     @Override
     public void setDataComplete(List<GroupBean> mDeviceInfoList, Map<Integer, List<ChildBean>> childMap) {
-        Log.e("setDataComplete","setDataComplete");
+        Log.e("setDataComplete", "setDataComplete");
         mAdapter.setGroupTitle(mDeviceInfoList);
         mAdapter.setChildMap(childMap);
         mAdapter.notifyDataSetChanged();
@@ -176,4 +182,31 @@ public class DashboardActivity extends BaseActivity<DashboardPresenter> implemen
             expandableListView.expandGroup(i);
         }
     }
+
+    @Override
+    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+
+        String serialNum = mAdapter.getChildMap().get(groupPosition).get(childPosition).getSerialNum();
+        if (isDeviceInfoComplete(serialNum)) {
+            Intent intent = new Intent(DashboardActivity.this, DetailActivity.class);
+            intent.putExtra(INTENT_DEVICE_ID, serialNum);
+            startActivity(intent);
+        } else {
+//            Intent intent = new Intent(DashboardActivity.this, NameIAQActivity.class);
+//            startActivity(intent);
+        }
+        return false;
+    }
+
+
+    private boolean isDeviceInfoComplete(String deviceId) {
+        IAQDevice iaqDevice = IAQSimpleFactory.getInstance().getIAQDevice(deviceId);
+        String home = iaqDevice.getHomeName();
+        if (TextUtils.isEmpty(home)) {
+            return false;
+        }
+        return true;
+    }
+
+
 }

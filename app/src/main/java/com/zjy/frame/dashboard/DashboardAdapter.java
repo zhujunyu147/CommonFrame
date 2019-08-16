@@ -41,6 +41,10 @@ public class DashboardAdapter extends BaseExpandableListAdapter {
         this.childMap = childMap;
     }
 
+    public Map<Integer, List<ChildBean>> getChildMap() {
+        return this.childMap;
+    }
+
     /*
      *  Gets the data associated with the given child within the given group
      */
