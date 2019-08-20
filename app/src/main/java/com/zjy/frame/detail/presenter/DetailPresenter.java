@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v4.content.FileProvider;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
@@ -27,11 +28,8 @@ import java.io.FileOutputStream;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 
 public class DetailPresenter extends BasePresenter<DetailView> {
-    private Uri mUri;
 
     public DetailPresenter(DetailView baseView) {
         super(baseView);
@@ -64,7 +62,8 @@ public class DetailPresenter extends BasePresenter<DetailView> {
                 fos.flush();
                 fos.close();
                 MediaScannerConnection.scanFile(baseView.getContext(), new String[]{filepath}, null, null);
-                mUri = Uri.fromFile(file);
+//                mUri = Uri.fromFile(file);
+
                 emitter.onComplete();
             }
         });
@@ -88,6 +87,7 @@ public class DetailPresenter extends BasePresenter<DetailView> {
 
     public void getCommonShot() {
 
+
         Observable<Uri> oble = Observable.create(new ObservableOnSubscribe<Uri>() {
             @Override
             public void subscribe(ObservableEmitter<Uri> emitter) throws Exception {
@@ -96,7 +96,7 @@ public class DetailPresenter extends BasePresenter<DetailView> {
                 decorview.setDrawingCacheEnabled(true);
                 decorview.buildDrawingCache();
                 Bitmap bitmap = Bitmap.createBitmap(decorview.getDrawingCache());
-                Bitmap waterSignBitmap = createBitmap(bitmap, "@ Honeywell空气检测仪App",true);
+                Bitmap waterSignBitmap = createBitmap(bitmap, "@ Honeywell空气检测仪App", true);
 
                 decorview.setDrawingCacheEnabled(false);
                 String SavePath = Environment.getExternalStorageDirectory().getPath() + "/IAQ/ShareImage";
@@ -117,28 +117,32 @@ public class DetailPresenter extends BasePresenter<DetailView> {
                 fos.flush();
                 fos.close();
                 MediaScannerConnection.scanFile(baseView.getContext(), new String[]{filepath}, null, null);
-                Uri uri = Uri.fromFile(file);
+//                Uri uri = Uri.fromFile(file);
+                String s = baseView.getContext().getPackageName() + ".fileprovider";
 
+                Uri photoOutputUri = FileProvider.getUriForFile(baseView.getContext(), s, file);
+
+                emitter.onNext(photoOutputUri);
             }
         });
 
         addDisposable(oble, new BaseObserver<Uri>(baseView) {
             @Override
             public void onSuccess(Uri mUri) {
-                Log.e("DetailPresenter","onSuccess");
-//                baseView.shotSuccess(mUri);
+                Log.e("DetailPresenter", "onSuccess" + mUri);
+                baseView.shotSuccess(mUri);
             }
 
             @Override
             public void onError(String msg) {
-
+                Log.e("DetailPresenter", "onError" + msg);
             }
         });
 
     }
 
     // 给图片添加水印
-    private Bitmap createBitmap(Bitmap src, String string,boolean isWhite) {
+    private Bitmap createBitmap(Bitmap src, String string, boolean isWhite) {
 
         Time t = new Time();
         t.setToNow();
@@ -154,9 +158,9 @@ public class DetailPresenter extends BasePresenter<DetailView> {
 
         String familyName = "宋体";
         Typeface font = Typeface.create(familyName, Typeface.BOLD);
-        if(isWhite){
+        if (isWhite) {
             paint.setColor(baseView.getContext().getResources().getColor(R.color.text_color1));
-        }else {
+        } else {
             paint.setColor(baseView.getContext().getResources().getColor(R.color.text_color1));
         }
 
@@ -175,7 +179,6 @@ public class DetailPresenter extends BasePresenter<DetailView> {
         canvas.restore();
         return bmpTemp;
     }
-
 
 
 }

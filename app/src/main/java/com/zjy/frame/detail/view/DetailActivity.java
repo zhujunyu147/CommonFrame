@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.content.FileProvider;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ import com.zjy.frame.utils.Constants;
 import com.zjy.frame.widget.CustomViewPager;
 import com.zjy.frame.widget.DirectionalViewPager;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -152,6 +154,7 @@ public class DetailActivity extends BaseActivity<DetailPresenter> implements Vie
 
     @Override
     public void shotSuccess(Uri uri) {
+
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_STREAM, uri);

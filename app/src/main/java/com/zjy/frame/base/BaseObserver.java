@@ -1,5 +1,7 @@
 package com.zjy.frame.base;
 
+import android.util.Log;
+
 import com.google.gson.JsonParseException;
 
 import org.json.JSONException;
@@ -22,16 +24,19 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
 
     @Override
     protected void onStart() {
+        Log.e("BaseObserver","onStart");
         super.onStart();
     }
 
     @Override
     public void onNext(T t) {
+        Log.e("BaseObserver","onNext");
         onSuccess(t);
     }
 
     @Override
     public void onError(Throwable e) {
+        Log.e("BaseObserver","onError");
         if (view != null && isShowDialog) {
             view.hideLoading();
         }
@@ -72,7 +77,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
 
     @Override
     public void onComplete() {
-
+        Log.e("BaseObserver","onComplete");
     }
 
     public abstract void onSuccess(T o);

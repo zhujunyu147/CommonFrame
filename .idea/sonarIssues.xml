@@ -348,6 +348,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/zjy/frame/base/BaseObserver.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/zjy/frame/dashboard/DashboardActivity.java">
           <value>
             <set />
@@ -499,6 +504,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/xml/provider_paths.xml">
           <value>
             <set />
           </value>
